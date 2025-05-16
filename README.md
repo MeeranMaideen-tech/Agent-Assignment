@@ -1,70 +1,99 @@
-# Getting Started with Create React App
+# 👥 Agent Assignment System – MERN Stack Internship Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A complete agent management system built using the MERN stack. This project allows admins to register agents, upload leads via CSV/XLSX, auto-distribute or manually assign tasks, and manage agent approvals. Agents have their own dashboards to view assigned leads.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🚀 Features
 
-### `npm start`
+- 🔐 Admin & Agent Login (JWT-based)
+- 🧾 CSV/XLSX File Upload
+- ⚙️ Auto Distribution of leads among agents
+- ✋ Manual Assignment option
+- 👮 Admin Approval Flow for new agents
+- 📊 Dashboards for both roles
+- 📎 File validations, error handling, responsive UI
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🧱 Tech Stack
 
-### `npm test`
+| Layer     | Technology          |
+|-----------|---------------------|
+| Frontend  | React, Tailwind CSS |
+| Backend   | Node.js, Express.js |
+| Database  | MongoDB (Mongoose)  |
+| Auth      | JWT (jsonwebtoken)  |
+| Upload    | Multer + xlsx       |
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 📁 Project Structure
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## ⚙️ Getting Started
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 1. Clone the Repo
 
-### `npm run eject`
+```bash
+git clone https://github.com/YOUR_USERNAME/Agent-Assignment.git
+cd Agent-Assignment
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Backend Setup
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+cd backend
+cp .env.example .env    # Add your Mongo URI and JWT secret
+npm install
+npm start
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Frontend Setup
+Open a second terminal:
+cd ..
+npm install             # Install frontend packages
+npm start
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+🔄 Project Flow (Step-by-Step)
 
-## Learn More
+🧑‍💼 Admin Flow
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Admin Registers / Logs In
+Secure authentication using JWT
+Redirected to Admin Dashboard
+Admin Adds Agents
+Enters agent details: name, email, phone, password
+Agent is added with isApproved = false
+Admin Approves Agents
+Pending agents are listed in the "Pending Approval" section
+Admin clicks "Approve" to allow login access
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Admin Uploads Lead File
 
-### Code Splitting
+Accepts .csv, .xlsx, or .xls with FirstName, Phone, Notes
+Backend parses and validates the file
+Lead Distribution
+System auto-distributes leads evenly across 5 approved agents
+Unassigned leads can also be manually assigned by admin
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+🧑 Agent Flow
 
-### Analyzing the Bundle Size
+Agent Registers
+Submits personal details and selects role as "Agent"
+Sees success message: “Please wait for admin approval before logging in”
+Agent Logs In (after approval)
+JWT authentication
+Redirected to Agent Dashboard
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Agent Dashboard
 
-### Making a Progressive Web App
+Sees only their assigned leads
+Table displays: FirstName, Phone, Notes
+Lead count is shown at the top
+Option to logout
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+💡 Admin Dashboard Highlights
+Add Agent form
+CSV Upload panel
+Pending Agents table
+Manual Assignment table
+Clean layout using Tailwind CSS
